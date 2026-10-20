@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>전자상거래 상세페이지 포트폴리오 웹뷰</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans KR', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Simulated long detail page smooth scrolling */
+        .detail-scroll-area {
+            scroll-behavior: smooth;
+        }
+
+        .preview-mobile {
+            max-width: 430px;
+            margin: 1.5rem auto;
+            border-radius: 44px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 0 12px #1f2937;
+            height: 880px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Pulse badge glow */
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col items-center justify-center p-0 sm:p-4 transition-colors duration-300">
+
+    <!-- Top Desktop View Switcher Bar -->
+    <div class="hidden md:flex items-center justify-between w-full max-w-4xl px-6 py-2.5 mb-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 z-50">
+        <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-600"></i>
+            <span class="text-xs font-bold tracking-tight text-slate-700 dark:text-slate-200">Commerce Design Lab Portfolio</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">뷰 스타일:</span>
+            <button id="btn-full-view" onclick="setViewMode('full')" class="px-3 py-1.5 text-xs font-medium rounded-xl bg-brand-600 text-white shadow-sm transition">전체 화면</button>
+            <button id="btn-frame-view" onclick="setViewMode('frame')" class="px-3 py-1.5 text-xs font-medium rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">모바일 프레임</button>
+        </div>
+    </div>
+
+    <!-- Main Container App Body -->
+    <div id="app-container" class="w-full max-w-md md:max-w-3xl bg-white dark:bg-slate-900 min-h-screen sm:min-h-[850px] sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden relative border-0 sm:border border-slate-200 dark:border-slate-800 transition-all duration-300">
+        
+        <!-- Status Bar (Native WebView look) -->
+        <div class="bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-md px-5 py-1.5 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800 select-none z-30">
+            <div class="flex items-center gap-2">
+                <span id="current-time" class="font-bold text-slate-700 dark:text-slate-300">10:42</span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1 animate-pulse"></span>
+                    Portfolio Live
+                </span>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <i data-lucide="wifi" class="w-3.5 h-3.5 text-emerald-500"></i>
+                <i data-lucide="battery" class="w-4 h-4 text-slate-600 dark:text-slate-300"></i>
+            </div>
+        </div>
+
+        <!-- App Header Bar -->
+        <header class="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-100 dark:border-slate-800/80 px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-brand-600 to-rose-400 text-white flex items-center justify-center font-black text-sm shadow-md shadow-brand-500/20">
+                    CD
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-tight flex items-center gap-1.5">
+                        상세페이지 포트폴리오
+                    </h1>
+                    <p class="text-[11px] text-slate-400 dark:text-slate-500">고전환 커머스 기획 & 디자인</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-1">
+                <!-- Search Toggle Button -->
+                <button onclick="toggleSearchInput()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </button>
+                
+                <!-- Saved Bookmarks View Toggle -->
+                <button onclick="toggleBookmarkOnlyFilter()" id="btn-bookmark-filter" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition relative" title="찜한 포트폴리오">
+                    <i data-lucide="heart" class="w-4 h-4"></i>
+                    <span id="bookmark-badge-count" class="hidden absolute top-1 right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-600"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Search Bar Drawer (Expandable) -->
+        <div id="search-drawer" class="hidden bg-slate-50 dark:bg-slate-800/80 px-4 py-2.5 border-b border-slate-200 dark:border-slate-700">
+            <div class="relative flex items-center">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 text-slate-400"></i>
+                <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="상품명, 클라이언트, 태그, 사용툴 검색..." class="w-full pl-9 pr-8 py-2 rounded-xl text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-800 dark:text-slate-100">
+                <button onclick="clearSearch()" class="absolute right-2.5 text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x-circle" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scrollable Main Container -->
+        <main class="flex-1 overflow-y-auto no-scrollbar p-4 space-y-4">
+
+            <!-- Category Filter Horizontal Scroll -->
+            <section class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">카테고리</h2>
+                    <span id="portfolio-count" class="text-xs font-semibold text-brand-600 dark:text-brand-400">총 6개 작업물</span>
+                </div>
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs">
+                    <button onclick="selectCategory('all')" class="category-chip active px-3.5 py-1.5 rounded-full bg-brand-600 text-white font-medium whitespace-nowrap shadow-sm transition">
+                        전체
+                    </button>
+                    <button onclick="selectCategory('식품/농산물')" class="category-chip px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium whitespace-nowrap transition">
+                        🌾 식품/농산물
+                    </button>
+                    <button onclick="selectCategory('뷰티/디퓨저')" class="category-chip px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium whitespace-nowrap transition">
+                        ✨ 뷰티/디퓨저
+                    </button>
+                    <button onclick="selectCategory('패션/잡화')" class="category-chip px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium whitespace-nowrap transition">
+                        👟 패션/잡화
+                    </button>
+                    <button onclick="selectCategory('리빙/가구')" class="category-chip px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium whitespace-nowrap transition">
+                        🏡 리빙/가구
+                    </button>
+                </div>
+            </section>
+
+            <!-- Sorting & Filter Status Bar -->
+            <div class="flex items-center justify-between text-xs py-1 border-b border-slate-100 dark:border-slate-800">
+                <div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                    <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+                    <span id="active-filter-label" class="font-medium">전체 포트폴리오</span>
+                </div>
+                <select id="sort-select" onchange="handleSort(this.value)" class="bg-transparent text-xs text-slate-600 dark:text-slate-300 font-medium focus:outline-none cursor-pointer">
+                    <option value="latest">최신순 정렬</option>
+                    <option value="popular">인기순 정렬</option>
+                    <option value="likes">찜 많은순</option>
+                </select>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Dynamic Javascript Cards Rendering Here -->
+            </div>
+
+            <!-- Empty State Notice (Hidden by default) -->
+            <div id="empty-state" class="hidden py-16 text-center space-y-3">
+                <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="folder-search" class="w-6 h-6"></i>
+                </div>
+                <p class="text-sm font-semibold text-slate-600 dark:text-slate-400">검색 또는 선택한 카테고리의 작업물이 없습니다.</p>
+                <button onclick="resetFilters()" class="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline">필터 초기화</button>
+            </div>
+
+            <div class="h-16"></div>
+        </main>
+
+        <!-- Bottom WebView App Dock Navigation -->
+        <nav class="absolute bottom-0 left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 px-6 py-2 flex items-center justify-around">
+            <button onclick="switchTab('home')" class="nav-tab active flex flex-col items-center gap-1 text-brand-600 dark:text-brand-400 py-1 px-3">
+                <i data-lucide="grid" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">포트폴리오</span>
+            </button>
+            <button onclick="openInquiryModal()" class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 py-1 px-3">
+                <div class="w-10 h-10 -mt-5 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-lg shadow-brand-500/30 active:scale-95 transition">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                </div>
+            </button>
+            <button onclick="toggleBookmarkOnlyFilter()" class="nav-tab flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 py-1 px-3">
+                <i data-lucide="bookmark" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">보관함</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PORTFOLIO DETAIL VIEWER MODAL / FULL SCREEN -->
+    <!-- ========================================== -->
+    <div id="detail-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-0 sm:p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg md:max-w-2xl h-full sm:h-[90vh] sm:rounded-3xl flex flex-col overflow-hidden relative shadow-2xl">
+            
+            <!-- Modal Header -->
+            <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between z-20">
+                <div class="flex items-center gap-2">
+                    <button onclick="closeDetailModal()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </button>
+                    <div>
+                        <h3 id="modal-client" class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wide">Client Name</h3>
+                        <h2 id="modal-title" class="text-sm font-bold text-slate-800 dark:text-slate-100 truncate max-w-[200px] sm:max-w-xs">Product Detail Title</h2>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                    <!-- Prev / Next Navigation -->
+                    <button onclick="navigatePortfolio(-1)" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="이전 포트폴리오">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="navigatePortfolio(1)" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="다음 포트폴리오">
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="toggleModalBookmark()" id="modal-bookmark-btn" class="p-2 rounded-xl text-slate-400 hover:text-rose-500 transition">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detail Modal Sub-Header Tabs -->
+            <div class="bg-slate-50 dark:bg-slate-800/60 px-4 py-2 border-b border-slate-200/80 dark:border-slate-800 flex items-center gap-4 text-xs font-semibold">
+                <button onclick="switchDetailTab('overview')" id="tab-btn-overview" class="detail-tab text-brand-600 dark:text-brand-400 border-b-2 border-brand-600 pb-1 transition">
+                    📌 기획 & 전략 개요
+                </button>
+                <button onclick="switchDetailTab('design')" id="tab-btn-design" class="detail-tab text-slate-400 dark:text-slate-500 hover:text-slate-700 pb-1 transition">
+                    📜 상세페이지 본문 시뮬레이션
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="flex-1 overflow-y-auto detail-scroll-area no-scrollbar p-4 space-y-6">
+
+                <!-- TAB 1: OVERVIEW & STRATEGY -->
+                <div id="detail-tab-overview" class="space-y-4">
+                    
+                    <!-- Cover Banner Preview -->
+                    <div id="modal-cover-preview" class="w-full h-48 rounded-2xl p-6 flex flex-col justify-end text-white relative overflow-hidden shadow-lg">
+                        <div class="relative z-10 space-y-1">
+                            <span id="modal-category-badge" class="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-[10px] font-semibold">카테고리</span>
+                            <h2 id="modal-cover-title" class="text-xl font-extrabold leading-snug">상품 메인 캐치프레이즈</h2>
+                        </div>
+                    </div>
+
+                    <!-- Meta Quick Stats -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-400 text-[10px] block">카테고리</span>
+                            <span id="meta-category" class="font-bold text-slate-800 dark:text-slate-200">-</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-400 text-[10px] block">사용 디자인 툴</span>
+                            <span id="meta-tools" class="font-bold text-slate-800 dark:text-slate-200">-</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-400 text-[10px] block">목표 전환율</span>
+                            <span id="meta-conversion" class="font-bold text-emerald-600 dark:text-emerald-400">+18.5% 상승</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-slate-400 text-[10px] block">제작 기간</span>
+                            <span id="meta-period" class="font-bold text-slate-800 dark:text-slate-200">5일 소요</span>
+                        </div>
+                    </div>
+
+                    <!-- Planning & Concept Strategy Card -->
+                    <div class="bg-white dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-100">
+                            <i data-lucide="target" class="w-4 h-4 text-brand-600"></i>
+                            <span>기획 의도 및 마케팅 전략</span>
+                        </div>
+                        <p id="modal-intent" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            기획 내용 및 구매 전환 유도 핵심 포인트 설명이 들어갑니다.
+                        </p>
+                    </div>
+
+                    <!-- Key USP Points -->
+                    <div class="bg-white dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 space-y-3 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-800 dark:text-slate-100">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                                <span>주요 셀링 포인트 (USP 3가지)</span>
+                            </div>
+                        </div>
+                        <ul id="modal-usp-list" class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                            <!-- Dynamic List -->
+                        </ul>
+                    </div>
+
+                    <!-- Quick Button to Long Detail Image Page -->
+                    <button onclick="switchDetailTab('design')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                        <span>실제 세로형 상세페이지 레이아웃 전체 보기</span>
+                    </button>
+
+                </div>
+
+                <!-- TAB 2: SIMULATED VERTICAL DETAIL PAGE CONTENT -->
+                <div id="detail-tab-design" class="hidden space-y-0 bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-xl text-white">
+                    
+                    <div class="bg-slate-800 px-4 py-2 flex items-center justify-between text-[11px] text-slate-300">
+                        <span class="flex items-center gap-1.5"><i data-lucide="smartphone" class="w-3.5 h-3.5 text-brand-400"></i> 모바일 뷰 상세페이지 시뮬레이션</span>
+                        <button onclick="openLightbox()" class="text-brand-400 font-semibold hover:underline flex items-center gap-1">
+                            <i data-lucide="maximize-2" class="w-3 h-3"></i> 원본 확대
+                        </button>
+                    </div>
+
+                    <!-- SIMULATED LONG VERTICAL DETAIL SECTIONS -->
+                    <div id="long-detail-content" class="divide-y divide-slate-800/50">
+                        <!-- Rendered dynamically in JS -->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Modal Bottom Action Bar -->
+            <div class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 p-3 flex items-center justify-between gap-3">
+                <div class="text-xs">
+                    <span class="text-slate-400 block text-[10px]">포트폴리오 의뢰 문의</span>
+                    <span class="font-bold text-slate-800 dark:text-slate-100">맞춤 디자인 제작</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="sharePortfolio()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition">
+                        <i data-lucide="share-2" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="openInquiryModal()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition">
+                        프로젝트 문의하기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- LIGHTBOX / FULL IMAGE ZOOM MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/80 hover:text-white p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="max-w-xl max-h-[85vh] overflow-y-auto no-scrollbar bg-slate-900 rounded-2xl p-4 border border-slate-800 text-white space-y-4">
+            <h4 class="text-xs font-bold text-brand-400 uppercase">상세페이지 디자인 전체 그래픽 원본</h4>
+            <div id="lightbox-content" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- INQUIRY FORM MODAL -->
+    <div id="inquiry-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl p-6 space-y-4 shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-5 h-5 text-brand-600"></i>
+                    <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm">상세페이지 제작 문의</h3>
+                </div>
+                <button onclick="closeInquiryModal()" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">상호명 / 성함</label>
+                    <input type="text" id="inq-name" placeholder="예: 브랜드 대표 홍길동" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">상품 카테고리</label>
+                    <select id="inq-category" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none">
+                        <option value="식품/농산물">식품/농산물</option>
+                        <option value="뷰티/디퓨저">뷰티/디퓨저</option>
+                        <option value="패션/잡화">패션/잡화</option>
+                        <option value="리빙/가구">리빙/가구</option>
+                        <option value="기타">기타 신규 브랜드</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">문의 내용 / 스토어 링크</label>
+                    <textarea id="inq-msg" rows="3" placeholder="제작하고자 하는 제품명과 원하시는 컨셉을 적어주세요." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+            </div>
+            <button onclick="submitInquiry()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition">
+                문의하기 접수 시뮬레이션
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300">
+        <div class="bg-slate-900/90 dark:bg-white/90 backdrop-blur-md text-white dark:text-slate-900 text-xs px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+            <span id="toast-message">알림 메시지</span>
+        </div>
+    </div>
+
+    <!-- Dynamic JavaScript Engine -->
+    <script>
+        // Sample Portfolio Items Dataset
+        const PORTFOLIO_DATA = [
+            {
+                id: 1,
+                title: "제주 유기농 착즙 100% 한라봉 주스",
+                client: "제주프레시 Farm",
+                category: "식품/농산물",
+                tags: ["유기농", "산지직송", "선물세트"],
+                tools: "Photoshop, Figma",
+                likes: 128,
+                views: 1420,
+                isBookmarked: false,
+                bgGradient: "from-amber-500 to-orange-600",
+                intro: "물 한 방울 섞지 않은 순수 착즙주스의 신선함과 산지 스토리를 극대화한 고전환 패키지/상세페이지",
+                intent: "B2C 스토어팜 구매 전환율을 높이기 위해 감귤 농장의 진정성과 0% 첨가물 비교 그래프를 전면에 배치. 첫 화면 인프레션에서 3초 내 신선함을 전달하도록 시각화.",
+                usps: [
+                    "농장주 얼굴과 제주 한라산 재배 환경 스토리텔링",
+                    "일반 농축액 vs 100% NFC 생착즙 특장점 비주얼 비교표",
+                    "안심 실온/냉장 배송 포장 가이드 및 고객 실제 리뷰 통합"
+                ],
+                sections: [
+                    { type: 'hook', text: "물 단 한 방울도 넣지 않은!", sub: "제주 한라산 첫 수확 100% 생착즙 주스" },
+                    { type: 'problem', text: "가짜 농축액 주스에 속으셨나요?", sub: "설탕, 색소, 보존제 0%! 순수 자연 과즙만 담았습니다." },
+                    { type: 'usp', title: "USP 01. NFC 착즙 공법", desc: "영양소 파괴를 최소화하는 45℃ 저온 착즙" },
+                    { type: 'review', count: "4.9 / 5.0", comment: "아이들이 너무 잘 먹어요! 재구매 3번째입니다." }
+                ]
+            },
+            {
+                id: 2,
+                title: "센티드 가든 프리미엄 우드윅 디퓨저",
+                client: "SCENTED Studio",
+                category: "뷰티/디퓨저",
+                tags: ["감성인테리어", "우드윅", "선물용"],
+                tools: "Photoshop, Midjourney, C4D",
+                likes: 245,
+                views: 2890,
+                isBookmarked: true,
+                bgGradient: "from-rose-500 to-purple-600",
+                intro: "고급 호텔의 은은한 향을 집에 구현한 감성 인테리어 디퓨저 룩북형 레이아웃",
+                intent: "감성 패키지컷 중심의 비주얼 스토리텔링. 향의 피라미드(Top/Middle/Base 노트)를 한눈에 파악할 수 있는 인포그래픽 중심 기획.",
+                usps: [
+                    "프랑스 조향 기법 기반 향기 노트 시각화 가이드",
+                    "공간별(거실, 침실, 서재) 연출 인테리어 컷 배치",
+                    "자연 우드 타닥타닥 타오르는 심지 그래픽 시뮬레이션"
+                ],
+                sections: [
+                    { type: 'hook', text: "공간을 채우는 시그니처 향기", sub: "프랑스 조향사가 완성한 프리미엄 스페이스 향" },
+                    { type: 'usp', title: "Scent Pyramid", desc: "Top: Citrus / Middle: Rose Woody / Base: Amber Musk" },
+                    { type: 'review', count: "5.0 / 5.0", comment: "집들이 선물로 줬는데 다들 어디서 샀냐고 물어보네요!" }
+                ]
+            },
+            {
+                id: 3,
+                title: "아티산 3D 에어리 오버핏 후드티",
+                client: "Urban Artisan",
+                category: "패션/잡화",
+                tags: ["스트릿패션", "핏가이드", "스트레치"],
+                tools: "Photoshop, Illustrator",
+                likes: 189,
+                views: 1950,
+                isBookmarked: false,
+                bgGradient: "from-slate-700 to-slate-900",
+                intro: "체형 커버 오버핏 실루엣과 고급 원단 복원력을 직관적인 룩북 및 마네킹 3D 컷으로 강조",
+                intent: "의류 구매 시 가장 고민하는 '실제 핏감'과 '세탁 후 변형' 여부를 직관적인 핏 가이드 챠트와 원단 근접 클로즈업으로 해결.",
+                usps: [
+                    "키/무게별 체형에 따른 착용 사이즈 가이드 맵",
+                    "고중량 덤블 워싱 원단 변형 0% 테스트 결과",
+                    "스트릿 감성을 살린 시크한 디테일 무드 룩북"
+                ],
+                sections: [
+                    { type: 'hook', text: "어깨가 넓어 보이는 무적 핏", sub: "450g 고중량 코튼의 탄탄한 오버핏 후디" },
+                    { type: 'problem', text: "몇 번 입고 목 다 늘어나셨나요?", sub: "헤리 테이프 이중 봉제로 100회 세탁에도 걱정 없습니다." },
+                    { type: 'usp', title: "Fit Guide", desc: "M(95~100) / L(105) / XL(110) 맞춤 스펙" }
+                ]
+            },
+            {
+                id: 4,
+                title: "모듈러 미니멀 원목 워크스페이스 데스크",
+                client: "루아드 가구",
+                category: "리빙/가구",
+                tags: ["원목가구", "데스크테리어", "3D모듈"],
+                tools: "Photoshop, Blender, Figma",
+                likes: 310,
+                views: 3410,
+                isBookmarked: false,
+                bgGradient: "from-emerald-600 to-teal-800",
+                intro: "나만의 워크스페이스를 조합하는 모듈형 북아메리카 화이트오크 데스크 상세페이지",
+                intent: "데스크테리어 족을 겨냥한 3D 가구 배치 및 케이블 정리 모듈 시스템 시각화. 고급 원목의 결을 화면 너머로 느끼도록 매트한 텍스처 강조.",
+                usps: [
+                    "3D 그래픽으로 구현한 모듈 확장 결합 인포그래픽",
+                    "친환경 F0 등급 오일 마감 및 모서리 라운딩 안전 가이드",
+                    "실제 유저 데스크 세팅 인스타그램 후기 모음"
+                ],
+                sections: [
+                    { type: 'hook', text: "몰입을 부르는 나만의 공간", sub: "북미산 화이트 오크 원목 모듈 데스크" },
+                    { type: 'usp', title: "Module System", desc: "모니터 암, 케이블 닥터, 조명 장착 모듈 타공 완료" }
+                ]
+            },
+            {
+                id: 5,
+                title: "콜드프레스 엑스트라버진 올리브유 세트",
+                client: "Oliva Santo",
+                category: "식품/농산물",
+                tags: ["스페인산", "산도0.1%", "명절선물"],
+                tools: "Photoshop, Illustrator",
+                likes: 98,
+                views: 1120,
+                isBookmarked: false,
+                bgGradient: "from-lime-600 to-emerald-700",
+                intro: "스페인 안달루시아 산지 추출, 최고급 산도 0.1% 엑스트라 버진 명절 선물세트",
+                intent: "고급 선물 수요를 노려 스페인 올리브 농장의 역사성 강조 및 패키지 선물상자 언박싱 컷 중심 레이아웃.",
+                usps: [
+                    "산도 0.1% 미만 프리미엄 등급 시험성적서 첨부",
+                    "샐러드, 스테이크, 파스타 페어링 레시피 팁 제공",
+                    "완벽 완충 에어캡 패키징 가이드"
+                ],
+                sections: [
+                    { type: 'hook', text: "스페인 왕실이 선택한 유기농 올리브", sub: "초저온 콜드프레스 0.1% 산도 엑스트라버진" }
+                ]
+            },
+            {
+                id: 6,
+                title: "더마 바이옴 장벽 강화 수분 크림",
+                client: "DERMA LAB",
+                category: "뷰티/디퓨저",
+                tags: ["피부장벽", "임상시험", "민감성"],
+                tools: "Photoshop, Figma",
+                likes: 215,
+                views: 2300,
+                isBookmarked: false,
+                bgGradient: "from-blue-600 to-cyan-700",
+                intro: "100시간 수분 지속 피부 장벽 개선 임상 결과를 숫자로 입증하는 더마 코스메틱 상세페이지",
+                intent: "신뢰성이 핵심인 더마 화장품 특성에 맞추어 피부과 임상 데이터 수치 및 텍스처 수분 캡슐 그래픽을 최상단에 전면 배치.",
+                usps: [
+                    "피부 장벽 개선율 240% 수치화 그래프",
+                    "끈적임 없는 수분 젤 텍스처 GIF 시뮬레이션",
+                    "화해 20가지 주의성분 Zero 인증 마크"
+                ],
+                sections: [
+                    { type: 'hook', text: "무너진 피부 장벽, 3일 만에 체감하세요", sub: "더마 바이옴 컴플렉스 78% 함유 수분크림" }
+                ]
+            }
+        ];
+
+        // Global State Variables
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let currentSort = 'latest';
+        let bookmarkOnly = false;
+        let activeModalItem = null;
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            updateClock();
+            setInterval(updateClock, 1000);
+            renderPortfolioGrid();
+            updateBookmarkBadge();
+        });
+
+        // Clock Function
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const el = document.getElementById('current-time');
+            if (el) el.textContent = `${h}:${m}`;
+        }
+
+        // View Mode Toggle (Mobile Frame vs Full Width)
+        function setViewMode(mode) {
+            const container = document.getElementById('app-container');
+            const btnFull = document.getElementById('btn-full-view');
+            const btnFrame = document.getElementById('btn-frame-view');
+
+            if (mode === 'frame') {
+                container.classList.add('preview-mobile');
+                btnFrame.classList.add('bg-brand-600', 'text-white');
+                btnFrame.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                btnFull.classList.remove('bg-brand-600', 'text-white');
+                btnFull.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            } else {
+                container.classList.remove('preview-mobile');
+                btnFull.classList.add('bg-brand-600', 'text-white');
+                btnFull.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                btnFrame.classList.remove('bg-brand-600', 'text-white');
+                btnFrame.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            }
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            showToast('테마 모드가 전환되었습니다.');
+        }
+
+        // Category Filter Selection
+        function selectCategory(cat) {
+            activeCategory = cat;
+            bookmarkOnly = false;
+
+            // UI Button Chip Active State
+            document.querySelectorAll('.category-chip').forEach(chip => {
+                chip.classList.remove('bg-brand-600', 'text-white');
+                chip.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            });
+            event.target.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            event.target.classList.add('bg-brand-600', 'text-white');
+
+            document.getElementById('active-filter-label').textContent = cat === 'all' ? '전체 포트폴리오' : `${cat} 카테고리`;
+            renderPortfolioGrid();
+        }
+
+        // Search Drawer Toggle & Logic
+        function toggleSearchInput() {
+            const drawer = document.getElementById('search-drawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderPortfolioGrid();
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            searchQuery = '';
+            renderPortfolioGrid();
+        }
+
+        // Sort Selector
+        function handleSort(sortType) {
+            currentSort = sortType;
+            renderPortfolioGrid();
+        }
+
+        // Filter Saved/Bookmarked Items
+        function toggleBookmarkOnlyFilter() {
+            bookmarkOnly = !bookmarkOnly;
+            const btn = document.getElementById('btn-bookmark-filter');
+            if (bookmarkOnly) {
+                btn.classList.add('text-rose-600', 'bg-rose-50', 'dark:bg-rose-950/50');
+                showToast('찜한 작업물만 모아봅니다.');
+            } else {
+                btn.classList.remove('text-rose-600', 'bg-rose-50', 'dark:bg-rose-950/50');
+            }
+            renderPortfolioGrid();
+        }
+
+        // Reset Filters
+        function resetFilters() {
+            activeCategory = 'all';
+            searchQuery = '';
+            bookmarkOnly = false;
+            document.getElementById('search-input').value = '';
+            renderPortfolioGrid();
+        }
+
+        // Render Portfolio Grid Logic
+        function renderPortfolioGrid() {
+            const grid = document.getElementById('portfolio-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            // Filter logic
+            let filtered = PORTFOLIO_DATA.filter(item => {
+                const matchCategory = activeCategory === 'all' || item.category === activeCategory;
+                const matchSearch = searchQuery === '' || 
+                    item.title.toLowerCase().includes(searchQuery) ||
+                    item.client.toLowerCase().includes(searchQuery) ||
+                    item.tags.some(t => t.toLowerCase().includes(searchQuery)) ||
+                    item.tools.toLowerCase().includes(searchQuery);
+                const matchBookmark = !bookmarkOnly || item.isBookmarked;
+
+                return matchCategory && matchSearch && matchBookmark;
+            });
+
+            // Sort logic
+            if (currentSort === 'latest') {
+                filtered.sort((a, b) => b.id - a.id);
+            } else if (currentSort === 'popular') {
+                filtered.sort((a, b) => b.views - a.views);
+            } else if (currentSort === 'likes') {
+                filtered.sort((a, b) => b.likes - a.likes);
+            }
+
+            // Update Count Label
+            document.getElementById('portfolio-count').textContent = `총 ${filtered.length}개 작업물`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-white dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+                    
+                    <!-- Card Thumbnail Banner -->
+                    <div onclick="openDetailModal(${item.id})" class="h-40 bg-gradient-to-br ${item.bgGradient} p-4 text-white relative cursor-pointer overflow-hidden flex flex-col justify-between">
+                        <div class="flex items-center justify-between z-10">
+                            <span class="px-2.5 py-0.5 rounded-full bg-black/30 backdrop-blur-md text-[10px] font-semibold">${item.category}</span>
+                            <button onclick="event.stopPropagation(); toggleBookmark(${item.id})" class="p-1.5 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition">
+                                <i data-lucide="heart" class="w-3.5 h-3.5 ${item.isBookmarked ? 'fill-rose-500 text-rose-500' : ''}"></i>
+                            </button>
+                        </div>
+
+                        <div class="z-10">
+                            <span class="text-[10px] font-medium opacity-90 block">${item.client}</span>
+                            <h3 class="text-sm font-bold leading-tight line-clamp-2">${item.title}</h3>
+                        </div>
+
+                        <!-- Card Decorative SVG Background Icon -->
+                        <div class="absolute -right-4 -bottom-4 text-white/10 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                            <i data-lucide="layout-template" class="w-24 h-24 stroke-[1]"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card Body Meta -->
+                    <div class="p-3.5 space-y-2 flex-1 flex flex-col justify-between">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                            ${item.intro}
+                        </p>
+
+                        <!-- Tag Chips -->
+                        <div class="flex flex-wrap items-center gap-1">
+                            ${item.tags.map(tag => `<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300 text-[10px] font-medium">#${tag}</span>`).join('')}
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
+                            <span class="flex items-center gap-1"><i data-lucide="pen-tool" class="w-3 h-3"></i> ${item.tools}</span>
+                            <button onclick="openDetailModal(${item.id})" class="font-bold text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-0.5">
+                                상세 보기 <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Bookmark Toggle
+        function toggleBookmark(id) {
+            const item = PORTFOLIO_DATA.find(p => p.id === id);
+            if (item) {
+                item.isBookmarked = !item.isBookmarked;
+                if (item.isBookmarked) {
+                    item.likes++;
+                    showToast('보관함에 저장되었습니다.');
+                } else {
+                    item.likes--;
+                    showToast('보관함에서 삭제되었습니다.');
+                }
+                updateBookmarkBadge();
+                renderPortfolioGrid();
+
+                // If modal is currently open for this item, update modal bookmark button
+                if (activeModalItem && activeModalItem.id === id) {
+                    updateModalBookmarkUI();
+                }
+            }
+        }
+
+        function updateBookmarkBadge() {
+            const count = PORTFOLIO_DATA.filter(p => p.isBookmarked).length;
+            const badge = document.getElementById('bookmark-badge-count');
+            if (count > 0) {
+                badge.textContent = count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // Open Detail Modal
+        function openDetailModal(id) {
+            const item = PORTFOLIO_DATA.find(p => p.id === id);
+            if (!item) return;
+
+            activeModalItem = item;
+
+            // Fill Modal Texts
+            document.getElementById('modal-client').textContent = item.client;
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-cover-title').textContent = item.title;
+            document.getElementById('modal-category-badge').textContent = item.category;
+
+            const coverPrev = document.getElementById('modal-cover-preview');
+            coverPrev.className = `w-full h-48 rounded-2xl p-6 flex flex-col justify-end text-white relative overflow-hidden shadow-lg bg-gradient-to-br ${item.bgGradient}`;
+
+            document.getElementById('meta-category').textContent = item.category;
+            document.getElementById('meta-tools').textContent = item.tools;
+            document.getElementById('modal-intent').textContent = item.intent;
+
+            // Render USPs
+            const uspList = document.getElementById('modal-usp-list');
+            uspList.innerHTML = item.usps.map((usp, idx) => `
+                <li class="flex items-start gap-2 bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
+                    <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-600 dark:bg-brand-950 dark:text-brand-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">${idx+1}</span>
+                    <span>${usp}</span>
+                </li>
+            `).join('');
+
+            // Render Simulated Vertical Long Detail Page Sections
+            renderLongDetailSections(item);
+
+            updateModalBookmarkUI();
+            switchDetailTab('overview');
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.getElementById('detail-modal').classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.getElementById('detail-modal').classList.remove('flex');
+        }
+
+        // Switch Tabs inside Modal
+        function switchDetailTab(tab) {
+            const overview = document.getElementById('detail-tab-overview');
+            const design = document.getElementById('detail-tab-design');
+            const btnOverview = document.getElementById('tab-btn-overview');
+            const btnDesign = document.getElementById('tab-btn-design');
+
+            if (tab === 'overview') {
+                overview.classList.remove('hidden');
+                design.classList.add('hidden');
+                btnOverview.classList.add('text-brand-600', 'border-b-2', 'border-brand-600');
+                btnDesign.classList.remove('text-brand-600', 'border-b-2', 'border-brand-600');
+            } else {
+                overview.classList.add('hidden');
+                design.classList.remove('hidden');
+                btnDesign.classList.add('text-brand-600', 'border-b-2', 'border-brand-600');
+                btnOverview.classList.remove('text-brand-600', 'border-b-2', 'border-brand-600');
+            }
+        }
+
+        // Render Simulated Vertical Long Page Graphics
+        function renderLongDetailSections(item) {
+            const container = document.getElementById('long-detail-content');
+            container.innerHTML = `
+                <!-- Hook Section Banner -->
+                <div class="p-8 text-center bg-gradient-to-b from-brand-900 to-slate-900 space-y-3">
+                    <span class="px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-[10px] font-bold uppercase tracking-widest border border-brand-500/30">HIGH-CONVERTING HERO</span>
+                    <h2 class="text-2xl font-black text-white leading-tight">${item.title}</h2>
+                    <p class="text-xs text-slate-300 max-w-xs mx-auto">${item.intro}</p>
+                    <div class="pt-4 flex justify-center">
+                        <span class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold shadow-lg glow-effect">특별할인가 혜택 보기</span>
+                    </div>
+                </div>
+
+                <!-- Strategic Sections -->
+                ${item.sections.map((sec, i) => {
+                    if (sec.type === 'hook') {
+                        return `
+                            <div class="p-6 text-center bg-slate-950 space-y-2">
+                                <span class="text-amber-400 font-bold text-xs uppercase">🔥 KEY HOOK POINT</span>
+                                <h3 class="text-lg font-bold text-white">${sec.text}</h3>
+                                <p class="text-xs text-slate-400">${sec.sub}</p>
+                            </div>
+                        `;
+                    } else if (sec.type === 'problem') {
+                        return `
+                            <div class="p-6 bg-slate-900/90 space-y-2 border-l-4 border-rose-500">
+                                <span class="text-rose-400 font-bold text-xs">PROBLEM STATEMENT</span>
+                                <h3 class="text-base font-bold text-white">${sec.text}</h3>
+                                <p class="text-xs text-slate-400">${sec.sub}</p>
+                            </div>
+                        `;
+                    } else if (sec.type === 'usp') {
+                        return `
+                            <div class="p-6 bg-slate-950 space-y-2">
+                                <span class="text-emerald-400 font-bold text-xs">${sec.title}</span>
+                                <p class="text-xs text-slate-200 leading-relaxed">${sec.desc}</p>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="p-6 bg-slate-900 space-y-2 text-center">
+                                <span class="text-amber-300 font-bold text-xs">REAL REVIEWS (${sec.count})</span>
+                                <p class="text-xs italic text-slate-300">"${sec.comment}"</p>
+                            </div>
+                        `;
+                    }
+                }).join('')}
+
+                <!-- Footer Guarantee Section -->
+                <div class="p-6 text-center bg-slate-950 text-slate-500 text-[11px] space-y-1">
+                    <p class="font-bold text-slate-400">100% 만족 보장 및 품질 검수 완료</p>
+                    <p>© ${item.client} Commerce Store. All rights reserved.</p>
+                </div>
+            `;
+        }
+
+        // Toggle Bookmark inside Modal
+        function toggleModalBookmark() {
+            if (activeModalItem) {
+                toggleBookmark(activeModalItem.id);
+            }
+        }
+
+        function updateModalBookmarkUI() {
+            const btn = document.getElementById('modal-bookmark-btn');
+            if (activeModalItem && activeModalItem.isBookmarked) {
+                btn.className = 'p-2 rounded-xl text-rose-500 transition';
+            } else {
+                btn.className = 'p-2 rounded-xl text-slate-400 hover:text-rose-500 transition';
+            }
+        }
+
+        // Navigate Prev/Next Portfolio in Modal
+        function navigatePortfolio(direction) {
+            if (!activeModalItem) return;
+            const currentIndex = PORTFOLIO_DATA.findIndex(p => p.id === activeModalItem.id);
+            let nextIndex = currentIndex + direction;
+            if (nextIndex < 0) nextIndex = PORTFOLIO_DATA.length - 1;
+            if (nextIndex >= PORTFOLIO_DATA.length) nextIndex = 0;
+
+            openDetailModal(PORTFOLIO_DATA[nextIndex].id);
+        }
+
+        // Lightbox Modal Controls
+        function openLightbox() {
+            if (!activeModalItem) return;
+            const content = document.getElementById('lightbox-content');
+            content.innerHTML = document.getElementById('long-detail-content').innerHTML;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+            document.getElementById('lightbox-modal').classList.add('flex');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+            document.getElementById('lightbox-modal').classList.remove('flex');
+        }
+
+        // Inquiry Modal Controls
+        function openInquiryModal() {
+            document.getElementById('inquiry-modal').classList.remove('hidden');
+            document.getElementById('inquiry-modal').classList.add('flex');
+        }
+
+        function closeInquiryModal() {
+            document.getElementById('inquiry-modal').classList.add('hidden');
+            document.getElementById('inquiry-modal').classList.remove('flex');
+        }
+
+        function submitInquiry() {
+            const name = document.getElementById('inq-name').value;
+            if (!name) {
+                showToast('성함 또는 상호명을 입력해 주세요.');
+                return;
+            }
+            closeInquiryModal();
+            showToast('문의가 정상적으로 접수되었습니다. 곧 연락드리겠습니다!');
+        }
+
+        // Share Portfolio Link
+        function sharePortfolio() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast('포트폴리오 공유 링크가 클립보드에 복사되었습니다.');
+        }
+
+        // Switch Dock Navigation Tabs
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-tab').forEach(t => {
+                t.classList.remove('text-brand-600', 'dark:text-brand-400');
+                t.classList.add('text-slate-400', 'dark:text-slate-500');
+            });
+            event.currentTarget.classList.remove('text-slate-400', 'dark:text-slate-500');
+            event.currentTarget.classList.add('text-brand-600', 'dark:text-brand-400');
+
+            if (tab === 'home') {
+                bookmarkOnly = false;
+                renderPortfolioGrid();
+            }
+        }
+
+        // Toast Notification Function
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            toast.classList.add('opacity-100', '-translate-y-2');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', '-translate-y-2');
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

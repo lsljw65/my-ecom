@@ -1,0 +1,12 @@
+JSON
+[
+  {
+    "id": 1,
+    "category": "뷰티/디퓨저",
+    "title": "MARUM 상세페이지",
+    "client": "MARUM",
+    "tags": "선물세트, 가정용",
+    "thumbnail": "https://lsljw65.github.io/my_ecom/images/diffuser/diff_1.png",
+    "summary": "디퓨저 향 디자",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/diffuser/diff_1.png, https://lsljw65.github.io/my-ecom/images/diffuser/diff_2.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_3.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_4.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_5.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"

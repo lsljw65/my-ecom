@@ -3,11 +3,11 @@
   {
     "id": 1,
     "category": "뷰티/디퓨저",
-    "title": "MARUM 상세페이지",
+    "title": "MORUM 모닝 히노키 리드 디퓨저",
     "client": "MARUM",
-    "tags": "선물세트, 가정용",
+    "tags": "힐링, 감성, 인테리어, 침실, 욕실",
     "thumbnail": "https://lsljw65.github.io/my-ecom/images/diffuser/diff_1.png",
-    "summary": "디퓨저 향 디자",
+    "summary": "유자·베르가못의 맑고 상쾌한 아침 공기 느낌으로 시작하여 편백·녹차·시더우드의 차분함으로 마무리되는 청량한 '아침 숲속 향'",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/diffuser/diff_1.png, https://lsljw65.github.io/my-ecom/images/diffuser/diff_2.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_3.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_4.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_5.png,https://lsljw65.github.io/my-ecom/images/diffuser/diff_6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }

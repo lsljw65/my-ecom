@@ -23,5 +23,17 @@
     "summary": "부드러운 매트 화이트 바디에 은은한 메탈 링 포인트가 어우러져 고급스럽고 세련된 오브제 감성을 전달합니다.",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/earphone/1.png,https://lsljw65.github.io/my-ecom/images/earphone/2.png,https://lsljw65.github.io/my-ecom/images/earphone/3.png,https://lsljw65.github.io/my-ecom/images/earphone/4.png,https://lsljw65.github.io/my-ecom/images/earphone/5.png,https://lsljw65.github.io/my-ecom/images/earphone/6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 3,
+    "category": "가구/침대",
+    "title": "골드 트림 채널 패브릭 침대 ",
+    "client": "골드 트림",
+    "tags": "호텔 스위트룸, 얇은 골드 트림, 넓은 프레임, ",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_01.png",
+    "summary": "크림 벨벳 패브릭에 얇은 골드 트림을 더한 호텔 스위트룸 무드의 플랫폼 침대",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_01.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_02.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_03.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_04.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_05.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_06.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

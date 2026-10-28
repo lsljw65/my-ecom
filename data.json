@@ -35,5 +35,17 @@
     "summary": "크림 벨벳 패브릭에 얇은 골드 트림을 더한 호텔 스위트룸 무드의 플랫폼 침대",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_01.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_02.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_03.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_04.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_05.png,https://lsljw65.github.io/my-ecom/images/bed/bed_SECTION_06.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 4,
+    "category": "가구/소파",
+    "title": "아늑(Anook) 라운드 패브릭 카우치 소파",
+    "client": "Anook",
+    "tags": "비대칭 라운드, 하이엔드, 공간 분리형, 이지클린, 생활 발수",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/sofa/1.png",
+    "summary": "어느 각도에서 보아도 완벽한 비대칭 라운드 디자인, 닿는 순간 전달되는 포근함, 입체적인 입자감의 부클레 원단, 아이나 반려동물이 있어도 마음 편한 오염 케어, 자연의 따뜻함과 견고한 균형감을 더한 디테일",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/sofa/1.png,https://lsljw65.github.io/my-ecom/images/sofa/2.png,https://lsljw65.github.io/my-ecom/images/sofa/3.png,https://lsljw65.github.io/my-ecom/images/sofa/4.png,https://lsljw65.github.io/my-ecom/images/sofa/5.png,https://lsljw65.github.io/my-ecom/images/sofa/6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

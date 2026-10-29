@@ -47,5 +47,17 @@
     "summary": "어느 각도에서 보아도 완벽한 비대칭 라운드 디자인, 닿는 순간 전달되는 포근함, 입체적인 입자감의 부클레 원단, 아이나 반려동물이 있어도 마음 편한 오염 케어, 자연의 따뜻함과 견고한 균형감을 더한 디테일",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/sofa/1.png,https://lsljw65.github.io/my-ecom/images/sofa/2.png,https://lsljw65.github.io/my-ecom/images/sofa/3.png,https://lsljw65.github.io/my-ecom/images/sofa/4.png,https://lsljw65.github.io/my-ecom/images/sofa/5.png,https://lsljw65.github.io/my-ecom/images/sofa/6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 5,
+    "category": "뷰티/앰플",
+    "title": "다이브인 저분자 히알루론산 세럼",
+    "client": "Torriden ",
+    "tags": "속건조, 수분진정, 레이어링",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/ample/am_1.png",
+    "summary": "피부 겉에서만 겉도는 수분이 아니라 피부 층층이 촘촘하게 침투하여 겉당김과 속당김을 한 번에 해결합니다. ",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/ample/am_1.png,https://lsljw65.github.io/my-ecom/images/ample/am_2.png,https://lsljw65.github.io/my-ecom/images/ample/am_3.png,https://lsljw65.github.io/my-ecom/images/ample/am_4.png,https://lsljw65.github.io/my-ecom/images/ample/am_5.png,https://lsljw65.github.io/my-ecom/images/ample/am_6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

@@ -59,5 +59,17 @@
     "summary": "피부 겉에서만 겉도는 수분이 아니라 피부 층층이 촘촘하게 침투하여 겉당김과 속당김을 한 번에 해결합니다. ",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/ample/am_1.png,https://lsljw65.github.io/my-ecom/images/ample/am_2.png,https://lsljw65.github.io/my-ecom/images/ample/am_3.png,https://lsljw65.github.io/my-ecom/images/ample/am_4.png,https://lsljw65.github.io/my-ecom/images/ample/am_5.png,https://lsljw65.github.io/my-ecom/images/ample/am_6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 6,
+    "category": "뷰티/향수",
+    "title": "TEA VEIL 01 · 티 베일",
+    "client": "YEOUN ",
+    "tags": "시트러스, 티, 우디, 만다린, 베르가모트, 아이리스, 시더우드",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/perfume/1.png",
+    "summary": "피부 겉에서만 겉도는 수분이 아니라 피부 층층이 촘촘하게 침투하여 겉당김과 속당김을 한 번에 해결합니다. ",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/perfume/1.png,https://lsljw65.github.io/my-ecom/images/perfume/2.png,https://lsljw65.github.io/my-ecom/images/perfume/3.png,https://lsljw65.github.io/my-ecom/images/perfume/4.png,https://lsljw65.github.io/my-ecom/images/perfume/5.png,https://lsljw65.github.io/my-ecom/images/perfume/6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

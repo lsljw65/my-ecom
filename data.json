@@ -83,5 +83,17 @@
     "summary": "비비드하면서도 고급스러운 옐로 바탕에 클래식한 화이트와 딥 레드 컬러의 플로랄 패턴을 더해 얼굴에 화사함을 더합니다.",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/one_piece/1.png,https://lsljw65.github.io/my-ecom/images/one_piece/2.png,https://lsljw65.github.io/my-ecom/images/one_piece/3.png,https://lsljw65.github.io/my-ecom/images/one_piece/4.png,https://lsljw65.github.io/my-ecom/images/one_piece/5.png,https://lsljw65.github.io/my-ecom/images/one_piece/6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 8,
+    "category": "패션의류/청바지",
+    "title": "빈티지 워싱 와이드 스트레이트 데님 팬츠",
+    "client": "MODENIM",
+    "tags": "체형 보정 청바지, 스판 와이드 데님, 3D 핏 청바지, 내추럴 라이트 블루 데님, 사계절 여성 청바지 ",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/jin2/1.png",
+    "summary": "높게 위치한 허리선과 허벅지부터 밑단까지 일자로 떨어지는 와이드 핏이 다리를 길고 슬림해 보이게 연출합니다.",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/jin2/1.png,https://lsljw65.github.io/my-ecom/images/jin2/2.png,https://lsljw65.github.io/my-ecom/images/jin2/3.png,https://lsljw65.github.io/my-ecom/images/jin2/4.png,https://lsljw65.github.io/my-ecom/images/jin2/5.png,https://lsljw65.github.io/my-ecom/images/jin2/6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

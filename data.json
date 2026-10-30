@@ -71,5 +71,17 @@
     "summary": "피부 겉에서만 겉도는 수분이 아니라 피부 층층이 촘촘하게 침투하여 겉당김과 속당김을 한 번에 해결합니다. ",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/perfume/1.png,https://lsljw65.github.io/my-ecom/images/perfume/2.png,https://lsljw65.github.io/my-ecom/images/perfume/3.png,https://lsljw65.github.io/my-ecom/images/perfume/4.png,https://lsljw65.github.io/my-ecom/images/perfume/5.png,https://lsljw65.github.io/my-ecom/images/perfume/6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 7,
+    "category": "패션의류/원피스",
+    "title": "썬플라워 플로랄 홀터넥 맥시 드레스 ",
+    "client": "SOLEIL",
+    "tags": "플로럴원피스, A라인원피스, 홀터넥원피스, 맥시원피스, 롱원피스 ",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/one_piece/1.png",
+    "summary": "비비드하면서도 고급스러운 옐로 바탕에 클래식한 화이트와 딥 레드 컬러의 플로랄 패턴을 더해 얼굴에 화사함을 더합니다.",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/one_piece/1.png,https://lsljw65.github.io/my-ecom/images/one_piece/2.png,https://lsljw65.github.io/my-ecom/images/one_piece/3.png,https://lsljw65.github.io/my-ecom/images/one_piece/4.png,https://lsljw65.github.io/my-ecom/images/one_piece/5.png,https://lsljw65.github.io/my-ecom/images/one_piece/6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

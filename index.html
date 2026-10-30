@@ -28,10 +28,16 @@
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
-    cd{background:white}
+   
+    .bg-brand-600 {
+    --tw-bg-opacity: 1;
+    background-color: #fff;
+    }
     .shadow-brand-600\/20 {
     --tw-shadow-color: #fff;
+    --tw-shadow: var(--tw-shadow-colored);
     }
+    .cd{background:white}
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     @keyframes slideUp {

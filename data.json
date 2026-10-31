@@ -89,11 +89,23 @@
     "category": "패션의류/청바지",
     "title": "빈티지 워싱 와이드 스트레이트 데님 팬츠",
     "client": "MODENIM",
-    "tags": "체형 보정 청바지, 스판 와이드 데님, 3D 핏 청바지, 내추럴 라이트 블루 데님, 사계절 여성 청바지 ",
+    "tags": "한과 선물세트, 전통 한과, 강정, 다식, 약과, 생 ",
     "tools": "AI, Photoshop, Canva ",
     "thumbnail": "https://lsljw65.github.io/my-ecom/images/jin2/1.png",
     "summary": "높게 위치한 허리선과 허벅지부터 밑단까지 일자로 떨어지는 와이드 핏이 다리를 길고 슬림해 보이게 연출합니다.",
     "detail_image": "https://lsljw65.github.io/my-ecom/images/jin2/1.png,https://lsljw65.github.io/my-ecom/images/jin2/2.png,https://lsljw65.github.io/my-ecom/images/jin2/3.png,https://lsljw65.github.io/my-ecom/images/jin2/4.png,https://lsljw65.github.io/my-ecom/images/jin2/5.png,https://lsljw65.github.io/my-ecom/images/jin2/6.png",
+    "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
+  },
+  {
+    "id": 9,
+    "category": "FOOD/한과",
+    "title": "사결 프리미엄 한과 선물세트",
+    "client": "GYEOL",
+    "tags": "체형 보정 청바지, 스판 와이드 데님, 3D 핏 청바지, 내추럴 라이트 블루 데님, 사계절 여성 청바지 ",
+    "tools": "AI, Photoshop, Canva ",
+    "thumbnail": "https://lsljw65.github.io/my-ecom/images/hangwa/1.png",
+    "summary": "참깨가 돋보이는 강정, 섬세한 꽃 문양의 다식, 윤기 있는 약과와 황금빛 한과까지. 각각의 형태와 색감이 모여 다채로운 구성을 이룹니다.",
+    "detail_image": "https://lsljw65.github.io/my-ecom/images/hangwa/1.png,https://lsljw65.github.io/my-ecom/images/hangwa/2.png,https://lsljw65.github.io/my-ecom/images/hangwa/3.png,https://lsljw65.github.io/my-ecom/images/hangwa/4.png,https://lsljw65.github.io/my-ecom/images/hangwa/5.png,https://lsljw65.github.io/my-ecom/images/hangwa/6.png",
     "intent": "구매 전환율을 높이기 위한 세로형 상세페이지 디자인"
   }
 ]

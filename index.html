@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>상세페이지 포트폴리오</title>
+  <title>상세페이지 & 영상 포트폴리오</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,11 +24,9 @@
     }
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
-    .cd{background:white !important}
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     @keyframes slideUp {
@@ -41,17 +39,17 @@
 <body class="bg-slate-50 dark:bg-slate-900 min-h-screen text-slate-800 dark:text-slate-100 transition-colors duration-200 pb-24">
 
   <!-- 메인 레이아웃 컨테이너 -->
-  <div class="max-w-5xl mx-auto px-4 py-4 md:py-8 space-y-6">
+  <div class="max-w-6xl mx-auto px-4 py-4 md:py-6 space-y-4">
 
     <!-- 1. 상단 헤더 영역 -->
     <header class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-full bg-transparent text-white font-black text-sm flex items-center justify-center shadow-md shadow-brand-600/20 cd">
-          <img src="./images/cd_logo.png" width="100%">
+        <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-brand-600/20">
+          CD
         </div>
         <div>
           <h1 class="text-base md:text-lg font-bold text-slate-900 dark:text-white leading-tight">상세페이지 포트폴리오</h1>
-          <p class="text-xs text-slate-400 font-medium mt-0.5">고전환 커머스 기획 & 디자인</p>
+          <p class="text-xs text-slate-400 font-medium mt-0.5">고전환 커머스 기획 & 디자인 & 영상</p>
         </div>
       </div>
 
@@ -69,7 +67,7 @@
       </div>
     </header>
 
-    <!-- 검색창 -->
+    <!-- 검색창 (토글) -->
     <div id="searchBox" class="hidden">
       <div class="relative">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
@@ -78,8 +76,8 @@
       </div>
     </div>
 
-    <!-- 2. 카테고리 탭 영역 -->
-    <section class="space-y-3">
+    <!-- 2. 상단 카테고리 칩 영역 -->
+    <section class="space-y-2">
       <div class="flex items-center justify-between text-xs">
         <span class="font-bold text-slate-400">카테고리</span>
         <span id="totalCount" class="font-bold text-brand-600">총 0개 작업물</span>
@@ -92,7 +90,7 @@
       </div>
     </section>
 
-    <!-- 3. 서브 헤더 -->
+    <!-- 3. 서브 타이틀 & 정렬 옵션 -->
     <div class="flex items-center justify-between pt-2 pb-1 border-b border-slate-100 dark:border-slate-800 text-xs text-slate-500">
       <div class="flex items-center space-x-1.5 font-bold text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-sliders text-slate-400 text-[11px]"></i>
@@ -106,43 +104,51 @@
       </div>
     </div>
 
-    <!-- 4. 포트폴리오 카드 그리드 -->
-    <main>
-      <div id="portfolioList" class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        <div id="loadingState" class="col-span-full text-center py-20 text-slate-400">
-          <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-3 text-brand-600"></i>
-          <p class="text-xs">포트폴리오 데이터를 불러오는 중...</p>
+    <!-- 4. 메인 콘텐츠 분할 영역 (좌측 세로 메뉴 + 우측 그리드) -->
+    <div class="flex gap-4 md:gap-6 pt-2 items-start">
+      
+      <!-- 좌측 세로 메뉴 바 (와이어프레임 시안 반영) -->
+      <aside class="w-24 md:w-32 flex-shrink-0 bg-slate-100 dark:bg-slate-800/60 rounded-2xl p-1.5 border border-slate-200/60 dark:border-slate-700/60 space-y-1 text-xs">
+        <div class="p-2 border-b border-slate-200 dark:border-slate-700/60 flex items-center justify-center text-slate-500 font-bold">
+          <i class="fa-solid fa-bars text-sm"></i>
         </div>
-      </div>
-    </main>
+        <div id="sideMenuContainer" class="space-y-1">
+          <!-- 스크립트로 세로 메뉴 동적 생성 -->
+        </div>
+      </aside>
+
+      <!-- 우측 포트폴리오 카드 그리드 -->
+      <main class="flex-1 min-w-0">
+        <div id="portfolioList" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <div id="loadingState" class="col-span-full text-center py-20 text-slate-400">
+            <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-3 text-brand-600"></i>
+            <p class="text-xs">포트폴리오 데이터를 불러오는 중...</p>
+          </div>
+        </div>
+      </main>
+
+    </div>
 
   </div>
 
-  <!-- 5. 하단 고정 네비게이션 바 (푸터 - 요청하신 이미지 스타일) -->
+  <!-- 5. 하단 고정 네비게이션 바 (푸터) -->
   <nav class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-t border-slate-100 dark:border-slate-700/60 z-40 px-8 py-2.5">
     <div class="max-w-md mx-auto flex items-center justify-between relative">
-      
-      <!-- 포트폴리오 탭 -->
       <button onclick="switchTab('all')" id="navAll" class="flex flex-col items-center text-brand-600 font-bold space-y-1 transition">
         <i class="fa-solid fa-grip-vertical text-lg"></i>
         <span class="text-[11px]">포트폴리오</span>
       </button>
-
-      <!-- 중앙 돌출 플로팅 상담/문의 버튼 -->
       <button onclick="openInquiryModal()" class="absolute left-1/2 -translate-x-1/2 -top-6 w-12 h-12 bg-brand-600 hover:bg-brand-700 text-white rounded-full flex items-center justify-center shadow-lg shadow-brand-600/40 hover:scale-105 transition-all">
         <i class="fa-solid fa-comment text-lg"></i>
       </button>
-
-      <!-- 보관함 탭 -->
       <button onclick="switchTab('saved')" id="navSaved" class="flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 space-y-1 transition relative">
         <i class="fa-regular fa-bookmark text-lg"></i>
         <span class="text-[11px]">보관함</span>
       </button>
-
     </div>
   </nav>
 
-  <!-- 상세페이지 모달 레이어 -->
+  <!-- 상세페이지 / 영상 플레이어 모달 레이어 -->
   <div id="detailModal" class="fixed inset-0 bg-black/70 z-50 hidden flex justify-center items-end md:items-center p-0 md:p-4 backdrop-blur-sm transition-opacity">
     <div class="bg-white dark:bg-slate-800 w-full max-w-2xl h-[92vh] md:h-[88vh] rounded-t-3xl md:rounded-3xl flex flex-col overflow-hidden shadow-2xl animate-slide-up">
       <div class="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-white/90 dark:bg-slate-800/90 backdrop-blur-md sticky top-0 z-10">
@@ -162,6 +168,18 @@
       </div>
 
       <div class="flex-1 overflow-y-auto p-5 space-y-5 no-scrollbar">
+        <!-- 영상(비디오) 삽입 영역 (비디오 데이터가 있을 때만 노출) -->
+        <div id="modalVideoArea" class="hidden space-y-2">
+          <div class="flex items-center space-x-1.5 text-xs font-bold text-brand-600">
+            <i class="fa-solid fa-circle-play"></i>
+            <span>영상 포트폴리오</span>
+          </div>
+          <div id="videoContainer" class="w-full aspect-video rounded-2xl overflow-hidden bg-black border border-slate-700 shadow-md">
+            <!-- iframe 또는 video 삽입 -->
+          </div>
+        </div>
+
+        <!-- 기획 요약 카드 -->
         <div class="bg-slate-50 dark:bg-slate-700/40 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/60 text-xs space-y-2.5">
           <div>
             <span class="font-bold text-slate-800 dark:text-slate-200 text-xs">📌 기획 요약</span>
@@ -174,7 +192,8 @@
           <div id="modalTags" class="flex flex-wrap gap-1.5 pt-1"></div>
         </div>
 
-        <div class="space-y-2">
+        <!-- 상세 이미지 출력 -->
+        <div id="modalDetailImageSection" class="space-y-2">
           <div class="flex items-center justify-between px-1">
             <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Detail View</h3>
             <span class="text-xs text-brand-600 font-medium"><i class="fa-solid fa-arrows-up-down text-[10px] mr-1"></i>세로 스크롤</span>
@@ -192,8 +211,8 @@
         <i class="fa-solid fa-comment-dots"></i>
       </div>
       <div>
-        <h3 class="text-base font-bold text-slate-900 dark:text-white">상세페이지 제작 & 상담 문의</h3>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">프로젝트 의뢰 및 기획/디자인 문의는 아래로 연락해 주세요.</p>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">상세페이지 & 영상 제작 문의</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">프로젝트 의뢰 및 상담 문의는 아래로 연락해 주세요.</p>
       </div>
       <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-2xl text-xs space-y-2 text-left border border-slate-100 dark:border-slate-700">
         <p class="text-slate-600 dark:text-slate-300"><strong>이메일:</strong> contact@example.com</p>
@@ -209,13 +228,17 @@
     let currentCategory = '전체';
     let currentTab = 'all';
 
+    // 대표 사이드바 메뉴 정의 (영상 메뉴 포함)
+    const sideCategories = ['전체', '뷰티', '가구', '전자기기', '패션의류', 'FOOD', '🎬 영상/비디오'];
+
     function getCategoryEmoji(cat) {
       if (!cat) return '📁';
-      if (cat.includes('식품') || cat.includes('농산')) return '🌾';
+      if (cat.includes('식품') || cat.includes('농산') || cat.includes('FOOD')) return '🌾';
       if (cat.includes('뷰티') || cat.includes('디퓨저') || cat.includes('화장품')) return '✨';
       if (cat.includes('패션') || cat.includes('잡화') || cat.includes('의류')) return '🍇';
       if (cat.includes('리빙') || cat.includes('가구') || cat.includes('인테리어')) return '🏡';
-      if (cat.includes('IT') || cat.includes('전자')) return '💻';
+      if (cat.includes('전자') || cat.includes('IT')) return '💻';
+      if (cat.includes('영상') || cat.includes('비디오')) return '🎬';
       return '📦';
     }
 
@@ -223,24 +246,25 @@
       const container = document.getElementById('portfolioList');
       try {
         const response = await fetch('./data.json?t=' + new Date().getTime());
-        if (!response.ok) throw new Error('data.json 파일을 불러올 수 없습니다. (상태코드: ' + response.status + ')');
+        if (!response.ok) throw new Error('data.json 로드 실패 (상태: ' + response.status + ')');
         portfolios = await response.json();
         
         setupCategories();
+        setupSideMenu();
         updateSavedBadge();
         renderPortfolios();
       } catch (error) {
-        console.error("데이터 연동 실패:", error);
+        console.error("데이터 연동 오류:", error);
         container.innerHTML = `
           <div class="col-span-full text-center py-16 px-4 text-slate-500 dark:text-slate-400">
             <i class="fa-solid fa-triangle-exclamation text-3xl text-amber-500 mb-2"></i>
             <p class="text-xs font-bold text-slate-800 dark:text-slate-200">data.json 연동 오류</p>
             <p class="text-[11px] text-slate-400 mt-1">${error.message}</p>
-            <p class="text-[10px] text-slate-400 mt-2 bg-slate-100 dark:bg-slate-800 p-2 rounded-lg inline-block">data.json 파일 안의 오타(쉼표 누락 등)를 점검해 보세요.</p>
           </div>`;
       }
     }
 
+    // 상단 가로 칩 메뉴
     function setupCategories() {
       const categorySet = new Set(portfolios.map(p => p.category).filter(Boolean));
       const categoryTabs = document.getElementById('categoryTabs');
@@ -263,12 +287,27 @@
       categoryTabs.innerHTML = html;
     }
 
+    // 좌측 세로 사이드바 메뉴 생성
+    function setupSideMenu() {
+      const sideMenuContainer = document.getElementById('sideMenuContainer');
+      sideMenuContainer.innerHTML = sideCategories.map(cat => {
+        const cleanCat = cat.replace('🎬 ', '');
+        const isActive = currentCategory === cleanCat || (currentCategory === '전체' && cleanCat === '전체');
+        return `
+          <button onclick="selectCategory('${cleanCat}')" class="w-full text-left px-3 py-2.5 rounded-xl transition font-medium flex items-center justify-between ${isActive ? 'bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700/50'}">
+            <span class="truncate">${cat}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
     function selectCategory(category) {
       currentCategory = category;
       currentTab = 'all';
       document.getElementById('currentCategoryTitle').innerText = category === '전체' ? '전체 포트폴리오' : `${category} 포트폴리오`;
       updateNavStyle('all');
       setupCategories();
+      setupSideMenu();
       renderPortfolios();
     }
 
@@ -284,7 +323,7 @@
       }
 
       let filtered = targetList.filter(item => {
-        const matchesCategory = currentCategory === '전체' || currentTab === 'saved' || item.category === currentCategory;
+        const matchesCategory = currentCategory === '전체' || currentTab === 'saved' || (item.category && item.category.includes(currentCategory));
         const matchesSearch = !searchKeyword || 
           (item.title && item.title.toLowerCase().includes(searchKeyword)) ||
           (item.client && item.client.toLowerCase().includes(searchKeyword)) ||
@@ -312,16 +351,17 @@
       container.innerHTML = filtered.map(item => {
         const isSaved = savedIds.includes(item.id);
         const toolsText = item.tools || 'Photoshop, Figma';
+        const isVideo = item.video_url || (item.category && item.category.includes('영상'));
 
         return `
         <div onclick="openModal(${item.id})" class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition duration-300 cursor-pointer overflow-hidden group flex flex-col justify-between">
-          <div class="relative h-52 md:h-56 w-full overflow-hidden bg-slate-900">
+          <div class="relative h-48 md:h-52 w-full overflow-hidden bg-slate-900">
             <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-black/20"></div>
 
             <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-              <span class="text-[11px] font-bold text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                ${item.category || '기타'}
+              <span class="text-[11px] font-bold text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 flex items-center gap-1">
+                ${isVideo ? '<i class="fa-solid fa-play text-[9px] text-brand-500"></i> VIDEO' : (item.category || '기타')}
               </span>
               <button onclick="event.stopPropagation(); toggleBookmark(${item.id})" class="w-8 h-8 rounded-full bg-black/30 backdrop-blur-md text-white/80 hover:text-white hover:bg-black/50 flex items-center justify-center transition">
                 <i class="${isSaved ? 'fa-solid text-brand-500' : 'fa-regular'} fa-heart text-xs"></i>
@@ -346,10 +386,10 @@
             <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between text-[11px]">
               <div class="flex items-center space-x-1.5 text-slate-400">
                 <i class="fa-solid fa-paperclip text-[10px]"></i>
-                <span class="truncate max-w-[150px]">${toolsText}</span>
+                <span class="truncate max-w-[130px]">${toolsText}</span>
               </div>
               <span class="font-bold text-brand-600 dark:text-brand-400 group-hover:translate-x-1 transition duration-200 flex items-center gap-1">
-                상세 보기 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                ${isVideo ? '영상 보기' : '상세 보기'} <i class="fa-solid fa-chevron-right text-[9px]"></i>
               </span>
             </div>
           </div>
@@ -404,6 +444,7 @@
       }
     }
 
+    // 모달 처리 (영상 / 이미지 통합)
     function openModal(id) {
       const item = portfolios.find(p => p.id === id);
       if (!item) return;
@@ -420,6 +461,25 @@
         document.getElementById('modalIntentBox').classList.add('hidden');
       }
 
+      // 동영상 처리 (video_url 속성이 있는 경우)
+      const modalVideoArea = document.getElementById('modalVideoArea');
+      const videoContainer = document.getElementById('videoContainer');
+      
+      if (item.video_url) {
+        modalVideoArea.classList.remove('hidden');
+        let videoEmbedHtml = '';
+        if (item.video_url.includes('youtube.com') || item.video_url.includes('youtu.be')) {
+          let embedUrl = item.video_url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/');
+          videoEmbedHtml = `<iframe src="${embedUrl}?autoplay=1&rel=0" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else {
+          videoEmbedHtml = `<video src="${item.video_url}" controls autoplay class="w-full h-full object-contain"></video>`;
+        }
+        videoContainer.innerHTML = videoEmbedHtml;
+      } else {
+        modalVideoArea.classList.add('hidden');
+        videoContainer.innerHTML = '';
+      }
+
       const isSaved = savedIds.includes(id);
       const modalBtn = document.getElementById('modalBookmarkBtn');
       modalBtn.innerHTML = `<i class="${isSaved ? 'fa-solid text-brand-600' : 'fa-regular'} fa-bookmark text-sm"></i>`;
@@ -428,15 +488,23 @@
       const modalTags = document.getElementById('modalTags');
       modalTags.innerHTML = (item.tags || '').split(',').map(tag => `<span class="text-[10px] bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 px-2 py-0.5 rounded-md">#${tag.trim()}</span>`).join('');
 
+      // 상세 이미지 처리
+      const detailImageSection = document.getElementById('modalDetailImageSection');
       const detailImagesContainer = document.getElementById('modalDetailImages');
       const imageUrls = (item.detail_image || '').split(',').map(url => url.trim()).filter(Boolean);
 
       if (imageUrls.length > 0) {
+        detailImageSection.classList.remove('hidden');
         detailImagesContainer.innerHTML = imageUrls.map(url => `
           <img src="${url}" class="w-full h-auto block" alt="상세페이지 이미지" onerror="this.src='https://via.placeholder.com/600x1200?text=Detail+Image+Error'">
         `).join('');
       } else {
-        detailImagesContainer.innerHTML = `<div class="p-8 text-center text-xs text-slate-400">상세 이미지가 없습니다.</div>`;
+        if (!item.video_url) {
+          detailImageSection.classList.remove('hidden');
+          detailImagesContainer.innerHTML = `<div class="p-8 text-center text-xs text-slate-400">상세 이미지가 없습니다.</div>`;
+        } else {
+          detailImageSection.classList.add('hidden');
+        }
       }
 
       document.getElementById('detailModal').classList.remove('hidden');
@@ -444,6 +512,7 @@
 
     function closeModal() {
       document.getElementById('detailModal').classList.add('hidden');
+      document.getElementById('videoContainer').innerHTML = ''; // 모달 닫을 때 동영상 재생 중지
     }
 
     function openInquiryModal() {
@@ -476,7 +545,6 @@
       }
     }
 
-    // 페이지 로드 시 실행
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', fetchPortfolioData);
     } else {

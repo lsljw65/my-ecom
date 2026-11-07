@@ -207,21 +207,35 @@
 
   <!-- 문의하기 모달 -->
   <div id="inquiryModal" class="fixed inset-0 bg-black/70 z-50 hidden flex justify-center items-center p-4 backdrop-blur-sm">
-    <div class="bg-white dark:bg-slate-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl text-center space-y-4">
-      <div class="w-12 h-12 bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center mx-auto text-xl">
-        <i class="fa-solid fa-comment-dots"></i>
-      </div>
-      <div>
-        <h3 class="text-base font-bold text-slate-900 dark:text-white">상세페이지 & 영상 제작 문의</h3>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">프로젝트 의뢰 및 상담 문의는 아래로 연락해 주세요.</p>
-      </div>
-      <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-2xl text-xs space-y-2 text-left border border-slate-100 dark:border-slate-700">
-        <p class="text-slate-600 dark:text-slate-300"><strong>이메일:</strong> contact@example.com</p>
-        <p class="text-slate-600 dark:text-slate-300"><strong>카카오톡:</strong> @portfolio_inquiry</p>
-      </div>
-      <button onclick="closeInquiryModal()" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl transition">닫기</button>
+  <div class="bg-white dark:bg-slate-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl text-center space-y-4">
+    <div class="w-12 h-12 bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center mx-auto text-xl">
+      <i class="fa-solid fa-comment-dots"></i>
     </div>
+    <div>
+      <h3 class="text-base font-bold text-slate-900 dark:text-white">상세페이지 제작 문의</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">프로젝트 의뢰 및 상담 문의는 아래 채널을 이용해 주세요.</p>
+    </div>
+    
+    <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-2xl text-xs space-y-2.5 text-left border border-slate-100 dark:border-slate-700">
+      <p class="text-slate-600 dark:text-slate-300 flex justify-between items-center">
+        <span><strong>이메일:</strong> lsljw65@gmail.com</span>
+      </p>
+      <div class="pt-2 border-t border-slate-200/60 dark:border-slate-600 flex flex-col gap-2">
+        <!-- 숨고 1:1 상담 버튼 -->
+        <a href="https://soomgo.com/profile/users/7014087?from=my_info_preview" target="_blank" class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold text-center rounded-xl transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-paper-plane text-xs"></i> 숨고 1:1 견적/상담하기
+        </a>
+        <!-- 구글 폼 의뢰 작성 버튼 
+        <a href="https://forms.gle/구글폼주소" target="_blank" class="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-center rounded-xl transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-file-pen text-xs"></i> 외주 의뢰 신청서 작성
+        </a>
+        -->
+      </div>
+    </div>
+    
+    <button onclick="closeInquiryModal()" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl transition">닫기</button>
   </div>
+</div>
 
   <script>
     let portfolios = [];
